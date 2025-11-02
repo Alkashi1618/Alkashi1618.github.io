@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémoire - ZKP Vote Électronique | Cheikh Omar LY & Ousmane DEME</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .header-content h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .authors {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .author {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .institution {
+            margin-top: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(59, 130, 246, 0.9));
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Technologies Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tech-item:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .tech-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: var(--accent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--gray), #475569);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Code blocks */
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>🔐 Implémentation du Protocole ZKP dans les Systèmes de Vote Électronique</h1>
+                <p class="subtitle">Vérification par Blockchain</p>
+                <div class="authors">
+                    <div class="author">👨‍🎓 Ousmane DEME</div>
+                    <div class="author">👨‍🎓 Cheikh Omar LY</div>
+                </div>
+                <p class="institution">Université Cheikh Anta DIOP de Dakar | LACGAA | 2023-2024</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#presentation">📋 Présentation</a></li>
+                <li><a href="#problematique">🎯 Problématique</a></li>
+                <li><a href="#technologies">💻 Technologies</a></li>
+                <li><a href="#architecture">🏗️ Architecture</a></li>
+                <li><a href="#zkp">🔒 Zero-Knowledge Proofs</a></li>
+                <li><a href="#resultats">📊 Résultats</a></li>
+                <li><a href="#conclusion">✅ Conclusion</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h2>🚀 Innovation en Démocratie Numérique</h2>
+            <p>Un système de vote électronique révolutionnaire combinant la confidentialité des Zero-Knowledge Proofs (ZKP) et la transparence de la blockchain pour garantir des élections sécurisées, vérifiables et démocratiques.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#" class="btn">📄 Télécharger le Mémoire PDF</a>
+                <a href="https://github.com/alkashi1618" class="btn btn-secondary">💻 Voir le Code Source</a>
+            </div>
+        </div>
+
+        <!-- Présentation -->
+        <section id="presentation" class="card">
+            <h2>📋 Présentation du Projet</h2>
+            <p>Ce mémoire présente une solution innovante pour moderniser les systèmes de vote électronique en répondant aux enjeux critiques de <strong>confidentialité</strong>, <strong>transparence</strong> et <strong>sécurité</strong>.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span>Anonymat des votes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span>Vérifiabilité</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span>Fraudes possibles</span>
+                </div>
+            </div>
+
+            <h3>🎓 Encadrement Académique</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>Encadreurs</h4>
+                    <p>👨‍🏫 Dr. TALL Amadou<br>👨‍🏫 M. KASSE Cherif</p>
+                </div>
+                <div class="feature">
+                    <h4>Laboratoire</h4>
+                    <p>LACGAA - Laboratoire d'Algèbre de Cryptologie de Géométrie Algébrique et Applications</p>
+                </div>
+                <div class="feature">
+                    <h4>Formation</h4>
+                    <p>Licence Transmission de Données et Sécurité de l'Information - Option CI</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problématique -->
+        <section id="problematique" class="card">
+            <h2>🎯 Problématique & Objectifs</h2>
+            
+            <h3>❓ Question Centrale</h3>
+            <p><em>"Comment intégrer les Zero-Knowledge Proofs dans un système de vote électronique afin de garantir à la fois la confidentialité des votes individuels et la vérifiabilité globale du processus ?"</em></p>
+
+            <h3>🎯 Enjeux Critiques</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>🔐 Confidentialité</h4>
+                    <p>Protéger l'identité des électeurs et leurs choix, tout en empêchant tout traçage ou corrélation avec le vote émis.</p>
+                </div>
+                <div class="feature">
+                    <h4>✅ Vérifiabilité</h4>
+                    <p>Permettre aux électeurs et observateurs de vérifier que les résultats sont exacts, sans compromettre la confidentialité.</p>
+                </div>
+                <div class="feature">
+                    <h4>🛡️ Robustesse</h4>
+                    <p>Garantir la résilience du système face aux cyberattaques et assurer la fiabilité des résultats.</p>
+                </div>
+                <div class="feature">
+                    <h4>☁️ Gestion Sécurisée</h4>
+                    <p>Assurer la protection des clés cryptographiques via des plateformes sécurisées comme AWS.</p>
+                </div>
+                <div class="feature">
+                    <h4>👥 Acceptabilité</h4>
+                    <p>Fournir une solution intuitive, transparente et accessible à un large public.</p>
+                </div>
+            </div>
+
+            <h3>🎯 Objectifs du Mémoire</h3>
+            <ul>
+                <li><strong>Analyser</strong> les fondements théoriques et les applications des ZKP</li>
+                <li><strong>Identifier</strong> les contraintes des systèmes de vote électronique</li>
+                <li><strong>Proposer</strong> une architecture basée sur les ZKP</li>
+                <li><strong>Évaluer</strong> la faisabilité et les performances du modèle proposé</li>
+            </ul>
+        </section>
+
+        <!-- Technologies -->
+        <section id="technologies" class="card">
+            <h2>💻 Stack Technologique</h2>
+            
+            <h3>🎨 Front-end</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>⚛️ React</h4>
+                    <p>Interface utilisateur dynamique et réactive</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🎨 HTML5/CSS3</h4>
+                    <p>Structure et design moderne</p>
+                </div>
+                <div class="tech-item">
+                    <h4>📜 JavaScript</h4>
+                    <p>Interactivité et logique client</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🔄 Axios</h4>
+                    <p>Communication API REST</p>
+                </div>
+            </div>
+
+            <h3>⚙️ Back-end</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>🐍 Django</h4>
+                    <p>Framework web robuste et sécurisé</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🔌 Django REST Framework</h4>
+                    <p>API RESTful puissante</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🗄️ MySQL</h4>
+                    <p>Base de données relationnelle</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🖥️ WampServer</h4>
+                    <p>Environnement de développement</p>
+                </div>
+            </div>
+
+            <h3>⛓️ Blockchain & Cryptographie</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>⟠ Ethereum</h4>
+                    <p>Plateforme blockchain décentralisée</p>
+                </div>
+                <div class="tech-item">
+                    <h4>📝 Solidity</h4>
+                    <p>Smart contracts</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🌐 Web3.py</h4>
+                    <p>Interaction avec la blockchain</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🔧 Truffle</h4>
+                    <p>Framework de développement</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🧪 Alchemy</h4>
+                    <p>Infrastructure blockchain</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🔐 Circom</h4>
+                    <p>Circuits arithmétiques pour ZKP</p>
+                </div>
+                <div class="tech-item">
+                    <h4>✨ SnarkJS</h4>
+                    <p>Génération et vérification ZKP</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🔑 PyCryptodome</h4>
+                    <p>Primitives cryptographiques</p>
+                </div>
+                <div class="tech-item">
+                    <h4>☁️ AWS KMS</h4>
+                    <p>Gestion sécurisée des clés</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section id="architecture" class="card">
+            <h2>🏗️ Architecture du Système</h2>
+            
+            <h3>📐 Architecture 3-Tiers</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>🎨 Front-end</h4>
+                    <p>Interface utilisateur intuitive développée avec React, permettant aux électeurs de voter et de vérifier leurs votes en toute simplicité.</p>
+                </div>
+                <div class="feature">
+                    <h4>⚙️ Back-end</h4>
+                    <p>Serveur Django gérant la logique métier, l'authentification, et les interactions avec la base de données. Intègre les API REST pour la communication.</p>
+                </div>
+                <div class="feature">
+                    <h4>⛓️ Blockchain</h4>
+                    <p>Réseau Ethereum pour le stockage immuable et transparent des votes. Les smart contracts garantissent l'intégrité du processus.</p>
+                </div>
+            </div>
+
+            <h3>🔄 Flux de Travail</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1️⃣ Authentification</h4>
+                    <p>L'électeur s'authentifie via un système sécurisé avec identifiant unique et mot de passe.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2️⃣ Sélection du Candidat</h4>
+                    <p>L'électeur accède à la liste des candidats et effectue son choix.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>3️⃣ Génération de la Preuve ZKP</h4>
+                    <p>Le système génère une preuve cryptographique confirmant la validité du vote sans révéler le choix.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>4️⃣ Enregistrement Blockchain</h4>
+                    <p>Le vote chiffré et la preuve ZKP sont stockés dans la blockchain de manière immuable.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>5️⃣ Vérification</h4>
+                    <p>L'électeur et les observateurs peuvent vérifier l'intégrité du vote via les preuves cryptographiques.</p>
+                </div>
+            </div>
+
+            <h3>👥 Acteurs du Système</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>👔 Administrateurs</h4>
+                    <p>Configuration des élections, gestion des candidatures, publication des résultats.</p>
+                </div>
+                <div class="feature">
+                    <h4>🗳️ Électeurs</h4>
+                    <p>Participation anonyme et sécurisée, vérification indépendante de leur vote.</p>
+                </div>
+                <div class="feature">
+                    <h4>👁️ Observateurs</h4>
+                    <p>Accès aux preuves cryptographiques, audit du processus électoral.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ZKP Section -->
+        <section id="zkp" class="card">
+            <h2>🔒 Zero-Knowledge Proofs (ZKP)</h2>
+            
+            <h3>📚 Concept Fondamental</h3>
+            <p>Les <strong>Zero-Knowledge Proofs</strong> sont des protocoles cryptographiques permettant de prouver qu'une information est vraie sans révéler cette information. Appliqué au vote électronique, cela signifie :</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h4>✅ Complétude</h4>
+                    <p>Si le vote est valide, le vérificateur sera convaincu de sa validité.</p>
+                </div>
+                <div class="feature">
+                    <h4>🛡️ Soundness</h4>
+                    <p>Un vote invalide ne pourra pas être accepté comme valide.</p>
+                </div>
+                <div class="feature">
+                    <h4>🔐 Zero-Knowledge</h4>
+                    <p>Le vérificateur n'apprend rien d'autre que la validité du vote.</p>
+                </div>
+            </div>
+
+            <h3>⚙️ Implémentation Technique</h3>
+            <p>Notre système utilise <strong>Circom</strong> et <strong>SnarkJS</strong> pour implémenter les ZKP :</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1. Définition du Circuit</h4>
+                    <p>Création d'un circuit arithmétique avec Circom (<code>vote.circom</code>) définissant les contraintes de validation.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2. Compilation</h4>
+                    <p>Conversion du circuit en formats R1CS et WASM pour les calculs cryptographiques.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>3. Génération des Témoins</h4>
+                    <p>Calcul des valeurs privées nécessaires à la création de la preuve.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>4. Setup Cryptographique</h4>
+                    <p>Génération des clés via Powers of Tau pour garantir la sécurité.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>5. Génération de la Preuve</h4>
+                    <p>Production d'une preuve zk-SNARK validant le vote.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>6. Vérification</h4>
+                    <p>Validation de la preuve avec la clé publique sans accès aux données privées.</p>
+                </div>
+            </div>
+
+            <h3>🔑 Gestion des Clés</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>🐍 PyCryptodome</h4>
+                    <p>Génération locale de paires de clés RSA pour le chiffrement et les signatures numériques.</p>
+                </div>
+                <div class="feature">
+                    <h4>☁️ AWS KMS</h4>
+                    <p>Stockage sécurisé dans le cloud avec contrôle d'accès centralisé, audit complet et haute disponibilité.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Résultats -->
+        <section id="resultats" class="card">
+            <h2>📊 Résultats & Contributions</h2>
+            
+            <h3>✨ Innovations Apportées</h3>
+            <div class="features">
+                <div class="feature">
+                    <h4>🔐 Confidentialité Totale</h4>
+                    <p>Les ZKP garantissent que le contenu du vote reste confidentiel tout en prouvant sa validité.</p>
+                </div>
+                <div class="feature">
+                    <h4>✅ Vérifiabilité Universelle</h4>
+                    <p>Chaque électeur et observateur peut vérifier indépendamment l'intégrité du processus.</p>
+                </div>
+                <div class="feature">
+                    <h4>⛓️ Transparence Blockchain</h4>
+                    <p>Stockage immuable et transparent des votes sur Ethereum.</p>
+                </div>
+                <div class="feature">
+                    <h4>🛡️ Sécurité Renforcée</h4>
+                    <p>Protection contre les manipulations, fraudes et cyberattaques.</p>
+                </div>
+                <div class="feature">
+                    <h4>🚀 Scalabilité</h4>
+                    <p>Architecture conçue pour supporter des élections de grande envergure.</p>
+                </div>
+                <div class="feature">
+                    <h4>🌍 Adaptabilité</h4>
+                    <p>Système applicable dans différents contextes électoraux (Sénégal, Afrique, monde).</p>
+                </div>
+            </div>
+
+            <h3>🎓 Méthodologie de Développement</h3>
+            <p>Le projet a été développé en suivant la méthodologie <strong>Scrum</strong> :</p>
+            <ul>
+                <li><strong>Sprints itératifs</strong> permettant une adaptation rapide aux besoins</li>
+                <li><strong>Collaboration continue</strong> avec les encadreurs et parties prenantes</li>
+                <li><strong>Livra

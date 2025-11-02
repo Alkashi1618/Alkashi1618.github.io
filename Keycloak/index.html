@@ -247,7 +247,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="../index.html#portfolio">
+            <a href="https://portfolio-alkashi1618.vercel.app/">
                 <i class="fas fa-arrow-left"></i> Retour au Portfolio
             </a>
             <a href="https://github.com/alkashi1618" target="_blank">
@@ -258,7 +258,7 @@
 
     <!-- Hero -->
     <div class="hero">
-        <h1>🔐 Système d'Authentification Centralisée avec Keycloak</h1>
+        <h1> Système d'Authentification Centralisée avec Keycloak</h1>
         <p class="subtitle">Mise en place d'un SSO sécurisé avec OAuth2 & OpenID Connect</p>
         <div class="badges">
             <span class="badge">Lab Pratique</span>
@@ -274,18 +274,18 @@
             
             <!-- Introduction -->
             <section class="section">
-                <h2>📋 Introduction</h2>
+                <h2> Introduction</h2>
                 <p>Dans le cadre de la sécurisation et de la centralisation de l'accès aux différentes applications internes, ce laboratoire vise à mettre en place une solution d'authentification unifiée basée sur <strong>Keycloak</strong>. L'objectif est de comprendre le fonctionnement d'un système <strong>SSO (Single Sign-On)</strong> avec les protocoles <strong>OAuth2</strong> et <strong>OpenID Connect</strong>.</p>
                 
                 <div class="info-box">
-                    <strong>🎯 Objectif du TP</strong><br>
+                    <strong> Objectif du TP</strong><br>
                     Mettre en place un système d'authentification centralisé permettant aux différentes applications web de déléguer l'authentification à un serveur Keycloak. Comprendre les rôles OAuth2, les flux de connexion sécurisés (Authorization Code + PKCE) et la gestion des utilisateurs, rôles et clients.
                 </div>
             </section>
 
             <!-- Installation -->
             <section class="section">
-                <h2>⚙️ Partie 1 – Installation de Keycloak</h2>
+                <h2>Partie 1 – Installation de Keycloak</h2>
                 
                 <h3>Installation via Docker</h3>
                 <p>Keycloak peut être déployé rapidement grâce à Docker. Cette méthode permet une mise en place rapide pour des environnements de développement ou de test.</p>
@@ -304,7 +304,7 @@
 
             <!-- Configuration -->
             <section class="section">
-                <h2>🔧 Partie 2 – Configuration de Keycloak</h2>
+                <h2> Partie 2 – Configuration de Keycloak</h2>
                 
                 <div class="grid-2">
                     <div class="card">
@@ -338,13 +338,13 @@
 
             <!-- Clients -->
             <section class="section">
-                <h2>🖥️ Partie 3 – Création et configuration des clients</h2>
+                <h2> Partie 3 – Création et configuration des clients</h2>
                 
                 <p>Dans Keycloak, un <strong>client</strong> représente une application qui souhaite utiliser l'authentification centralisée. Deux types de clients ont été configurés :</p>
 
                 <div class="grid-2">
                     <div class="card">
-                        <h4>📱 Client : backend-api</h4>
+                        <h4> Client : backend-api</h4>
                         <p><strong>Type :</strong> Confidential</p>
                         <ul>
                             <li>Peut stocker un secret sécurisé</li>
@@ -355,7 +355,7 @@
                     </div>
 
                     <div class="card">
-                        <h4>📱 Client : mobile-app</h4>
+                        <h4> Client : mobile-app</h4>
                         <p><strong>Type :</strong> Public</p>
                         <ul>
                             <li>Ne peut pas stocker de secret</li>
@@ -367,14 +367,14 @@
                 </div>
 
                 <div class="success-box">
-                    <strong>✅ PKCE (Proof Key for Code Exchange)</strong><br>
+                    <strong> PKCE (Proof Key for Code Exchange)</strong><br>
                     Extension de sécurité pour OAuth2 qui protège contre les attaques d'interception du code d'autorisation, particulièrement importante pour les applications publiques.
                 </div>
             </section>
 
             <!-- Tests -->
             <section class="section">
-                <h2>🧪 Partie 4 – Test de l'authentification</h2>
+                <h2> Partie 4 – Test de l'authentification</h2>
                 
                 <h3>1. Lancement de l'API Node.js</h3>
                 <p>L'API backend est sécurisée par Keycloak et nécessite un token valide pour accéder aux ressources protégées.</p>
@@ -402,7 +402,7 @@
 
             <!-- Analyse -->
             <section class="section">
-                <h2>🔍 Partie 5 – Analyse et compréhension</h2>
+                <h2> Partie 5 – Analyse et compréhension</h2>
                 
                 <h3>1. Différence entre OAuth2 et OpenID Connect</h3>
                 <div class="grid-2">
@@ -513,12 +513,12 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</div>
                 </div>
 
                 <ul>
-                    <li>✅ <strong>Centralisation</strong> : Un système d'auth unique pour toutes les apps</li>
-                    <li>✅ <strong>Sécurité renforcée</strong> : Mots de passe jamais partagés, support 2FA</li>
-                    <li>✅ <strong>Contrôle fin</strong> : Gestion granulaire des permissions</li>
-                    <li>✅ <strong>Interopérabilité</strong> : Standards OAuth2, OIDC, SAML</li>
-                    <li>✅ <strong>Expérience utilisateur</strong> : SSO simplifie la vie des utilisateurs</li>
-                    <li>✅ <strong>Scalabilité</strong> : Parfait pour microservices et grandes infrastructures</li>
+                    <li> <strong>Centralisation</strong> : Un système d'auth unique pour toutes les apps</li>
+                    <li> <strong>Sécurité renforcée</strong> : Mots de passe jamais partagés, support 2FA</li>
+                    <li> <strong>Contrôle fin</strong> : Gestion granulaire des permissions</li>
+                    <li> <strong>Interopérabilité</strong> : Standards OAuth2, OIDC, SAML</li>
+                    <li> <strong>Expérience utilisateur</strong> : SSO simplifie la vie des utilisateurs</li>
+                    <li> <strong>Scalabilité</strong> : Parfait pour microservices et grandes infrastructures</li>
                 </ul>
 
                 <h3>4️⃣ Où l'utiliser ?</h3>
@@ -561,13 +561,13 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</div>
 
             <!-- Conclusion -->
             <section class="section">
-                <h2>🎯 Conclusion</h2>
+                <h2> Conclusion</h2>
                 <p>Ce mini LAB a permis de comprendre la mise en place d'un serveur d'identité Keycloak et l'intégration d'un système d'authentification centralisé basé sur les standards <strong>OAuth2</strong> et <strong>OpenID Connect</strong>.</p>
 
                 <p>La configuration des rôles, utilisateurs, clients et des flux PKCE permet d'assurer un <strong>haut niveau de sécurité</strong> tout en simplifiant la gestion des accès.</p>
 
                 <div class="success-box">
-                    <h4>✅ Compétences acquises</h4>
+                    <h4> Compétences acquises</h4>
                     <ul>
                         <li>Installation et configuration de Keycloak</li>
                         <li>Compréhension OAuth2 vs OpenID Connect</li>
@@ -595,7 +595,7 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024-2025 Ousmane DEME | <a href="../index.html">Portfolio</a> | <a href="https://www.linkedin.com/in/ousmane-deme1618" target="_blank">LinkedIn</a></p>
+        <p>&copy; 2024-2025 Ousmane DEME | <a href="https://portfolio-alkashi1618.vercel.app/">Portfolio</a> | <a href="https://www.linkedin.com/in/ousmane-deme1618" target="_blank">LinkedIn</a></p>
     </footer>
 
 </body>
